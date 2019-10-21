@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {MatPaginator, MatSort, MatTable} from '@angular/material';
+
 
 
 
@@ -10,13 +12,15 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 })
 export class Version1Component implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatTable, {static: false}) table: MatTable<DateTableItem>;
+  dataSource: DateTableDataSource;
 
+  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
+  displayedColumns = ['id', 'name'];
 
-  ngOnInit(): void {
+  ngOnInit() {
+
   }
 
-  getPokemon () {
-    this.http.get('https://pokeapi.co/api/v2/').subscribe()
-  }
-}
