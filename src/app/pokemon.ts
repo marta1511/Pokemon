@@ -1,9 +1,10 @@
-export interface Pokemon {
-  name: string;
+
+export class Pokemon {
+ name: string;
   types: Types;
   height: number;
   weight: number;
-  base_experience: number;
+  baseExperience: number;
   abilities: Array<Abilities>;
 }
 
@@ -28,3 +29,6 @@ export interface Type {
   name: string;
   url: string;
 }
+
+
+

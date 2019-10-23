@@ -9,9 +9,9 @@ import {Version1Component} from './version1/version1.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { DateTableComponent } from './date-table/date-table.component';
+// import { MatPaginatorModule } from '@angular/material/paginator';
+// import { MatSortModule } from '@angular/material/sort';
+
 
 
 @NgModule({
@@ -19,9 +19,7 @@ import { DateTableComponent } from './date-table/date-table.component';
     AppComponent,
     Version2Component,
     Version1Component,
-    HomePageComponent,
-    DateTableComponent
-
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -29,8 +27,8 @@ import { DateTableComponent } from './date-table/date-table.component';
     HttpClientModule,
     RouterModule.forRoot(routes),
     MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    // MatPaginatorModule,
+    // MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
