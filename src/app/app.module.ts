@@ -9,8 +9,10 @@ import {Version1Component} from './version1/version1.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
+import {PokemonService} from './pokemon.service';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 // import { MatSortModule } from '@angular/material/sort';
+
 
 
 
@@ -30,7 +32,7 @@ import { MatTableModule } from '@angular/material/table';
     // MatPaginatorModule,
     // MatSortModule
   ],
-  providers: [],
+  providers: [PokemonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

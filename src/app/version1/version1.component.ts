@@ -6,6 +6,8 @@ import {MatPaginator, MatSort, MatTable} from '@angular/material';
 import {Pokemons} from '../pokemons';
 import {Observable} from 'rxjs';
 import {Pokemon} from '../pokemon';
+import {map} from 'rxjs/operators';
+import {PokemonService} from '../pokemon.service';
 
 @Component({
   selector: 'app-version1',
@@ -14,7 +16,7 @@ import {Pokemon} from '../pokemon';
 })
 export class Version1Component implements OnInit {
 
-  pokemons: Pokemons [];
+
 
 
   // @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
@@ -26,29 +28,19 @@ export class Version1Component implements OnInit {
   //
   // displayedColumns = ['name', 'type', 'height/weight', 'signature ability', 'base experience'];
 
-  constructor(private http: HttpClient) {
+  constructor( private service: PokemonService ) {
 
   }
+
 
   ngOnInit() {
     // this.dataSource = new PokemonData (this.paginator, this.sort);
-    this.getPokemon();
+ this.service.getPokemon();
 
   }
 
-  private getPokemon() {
-    this.http.get<any>('https://pokeapi.co/api/v2/pokemon/').subscribe(resp => {
-      console.log(resp);
-      this.pokemons = resp.results;
-      console.log(resp.results);
 
-    });
-  }
 
-  private getPokemonDetails() {
-
-}
-  }
 
 
 
