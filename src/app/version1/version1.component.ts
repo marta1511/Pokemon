@@ -5,9 +5,10 @@ import {MatPaginator, MatSort, MatTable} from '@angular/material';
 
 import {Pokemons} from '../pokemons';
 import {Observable} from 'rxjs';
-import {Pokemon} from '../pokemon';
+
 import {map} from 'rxjs/operators';
 import {PokemonService} from '../pokemon.service';
+import {PokemonName} from '../pokemonName';
 
 @Component({
   selector: 'app-version1',
@@ -15,34 +16,39 @@ import {PokemonService} from '../pokemon.service';
   styleUrls: ['./version1.component.css']
 })
 export class Version1Component implements OnInit {
+  pokemons: Pokemons[] = [];
+  pokemonName: PokemonName [] = [];
+  pokemonOffset: number = 0;
+  pokemonLimit: number = 20;
 
 
 
 
-  // @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
-  // @ViewChild(MatSort, {static: false}) sort: MatSort;
-  // dataSource: PokemonData;
-  //
-  //
-  // /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  //
-  // displayedColumns = ['name', 'type', 'height/weight', 'signature ability', 'base experience'];
-
-  constructor( private service: PokemonService ) {
+  constructor(private service: PokemonService) {
 
   }
 
 
   ngOnInit() {
     // this.dataSource = new PokemonData (this.paginator, this.sort);
- this.service.getPokemon();
+    this.service.getPokemonList(this.pokemonOffset, this.pokemonLimit).subscribe(data => {
+       this.pokemons = data;
+        this.getPokemonsOneByOne();
+        console.log(this.pokemonName);
+    });
 
   }
 
+  private getPokemonsOneByOne() {
 
+    this.pokemons.forEach( pokemonName => {
 
+      this.service.getPokemonDetails(pokemonName.name).subscribe(data => {
+        this.pokemonName.push(data);
+      });
 
-
+    });
+     console.log(this.pokemonName);
+  }
 
 }
-
