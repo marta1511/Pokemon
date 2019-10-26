@@ -5,10 +5,9 @@ import {MatPaginator, MatSort, MatTable} from '@angular/material';
 
 import {Pokemons} from '../pokemons';
 import {Observable} from 'rxjs';
-
-import {map} from 'rxjs/operators';
 import {PokemonService} from '../pokemon.service';
-import {PokemonName} from '../pokemonName';
+import {map} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-version1',
@@ -17,9 +16,8 @@ import {PokemonName} from '../pokemonName';
 })
 export class Version1Component implements OnInit {
   pokemons: Pokemons[] = [];
-  pokemonName: PokemonName [] = [];
-  pokemonOffset: number = 0;
-  pokemonLimit: number = 20;
+
+
 
 
 
@@ -30,25 +28,23 @@ export class Version1Component implements OnInit {
 
 
   ngOnInit() {
-    // this.dataSource = new PokemonData (this.paginator, this.sort);
-    this.service.getPokemonList(this.pokemonOffset, this.pokemonLimit).subscribe(data => {
-       this.pokemons = data;
-        this.getPokemonsOneByOne();
-        console.log(this.pokemonName);
-    });
-
-  }
-
-  private getPokemonsOneByOne() {
-
-    this.pokemons.forEach( pokemonName => {
-
-      this.service.getPokemonDetails(pokemonName.name).subscribe(data => {
-        this.pokemonName.push(data);
-      });
+    this.pokemons = [];
+    this.service.getPokemonList(0, 10).subscribe(data => {
+      this.pokemons = data;
+      console.log(this.pokemons);
+      this.getPokemonsOneByOne();
+      console.log(this.pokemons);
 
     });
-     console.log(this.pokemonName);
   }
+
+private getPokemonsOneByOne () {
+    this.pokemons = []
+    this.pokemons.forEach( pokemons => {
+      this.service.getPokemonDetails(pokemons.name).subscribe(data => {
+        this.pokemons.push(data);
+    });
+});
+}
 
 }
