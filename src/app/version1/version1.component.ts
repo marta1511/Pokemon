@@ -17,7 +17,7 @@ import {PokemonName} from '../home-page/pokemonName';
   styleUrls: ['./version1.component.css']
 })
 export class Version1Component implements OnInit {
-  pokemons: Pokemons[] = [];
+  pokemons: Pokemons[];
 
 
 
@@ -31,22 +31,22 @@ export class Version1Component implements OnInit {
 
 
   ngOnInit() {
-    this.pokemons = [];
-    this.service.getPokemonList(0, 10).subscribe(data => {
+  this.pokemons = [];
+  this.service.getPokemonList(0, 20).subscribe(data => {
       this.pokemons = data;
       console.log(this.pokemons);
       this.getPokemonsOneByOne();
       console.log(this.pokemons);
+  });
 
-    });
   }
 
 private getPokemonsOneByOne() {
     this.pokemons = [];
-    this.pokemons.forEach( pokemons =>
-    {this.service.getPokemon(pokemons.name).subscribe(data =>{
+    this.pokemons.forEach( pokemons => {
+      this.service.getPokemon(pokemons.name).subscribe(data => {
         this.pokemons.push(data);
-      })
+      });
 });
 }
 

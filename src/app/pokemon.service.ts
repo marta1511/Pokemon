@@ -22,8 +22,8 @@ export class PokemonService {
       return this.http.get<any>(this.pokeApiURL + '?offset=' + offset + '&limit=' + limit).pipe(map(resp => resp.results));
   }
 
-  public getPokemon(name: string): Observable<PokemonName>  {
-    return this.http.get<PokemonName>(this.pokeApiURL + name);
+  public getPokemon(name: string): Observable<any>  {
+    return this.http.get<any>(this.pokeApiURL + name);
   }
   }
 
