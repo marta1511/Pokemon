@@ -3,6 +3,7 @@ import {Pokemons} from './pokemons';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {PokemonName} from './home-page/pokemonName';
 
 
 @Injectable({
@@ -21,8 +22,8 @@ export class PokemonService {
       return this.http.get<any>(this.pokeApiURL + '?offset=' + offset + '&limit=' + limit).pipe(map(resp => resp.results));
   }
 
-  public getPokemonDetails (name: string): Observable<Pokemons> {
-    return this.http.get<Pokemons>(this.pokeApiURL + name);
+  public getPokemon(name: string): Observable<PokemonName>  {
+    return this.http.get<PokemonName>(this.pokeApiURL + name);
   }
   }
 

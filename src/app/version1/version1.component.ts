@@ -7,6 +7,8 @@ import {Pokemons} from '../pokemons';
 import {Observable} from 'rxjs';
 import {PokemonService} from '../pokemon.service';
 import {map} from 'rxjs/operators';
+import {any} from 'codelyzer/util/function';
+import {PokemonName} from '../home-page/pokemonName';
 
 
 @Component({
@@ -16,6 +18,7 @@ import {map} from 'rxjs/operators';
 })
 export class Version1Component implements OnInit {
   pokemons: Pokemons[] = [];
+
 
 
 
@@ -38,12 +41,12 @@ export class Version1Component implements OnInit {
     });
   }
 
-private getPokemonsOneByOne () {
-    this.pokemons = []
-    this.pokemons.forEach( pokemons => {
-      this.service.getPokemonDetails(pokemons.name).subscribe(data => {
+private getPokemonsOneByOne() {
+    this.pokemons = [];
+    this.pokemons.forEach( pokemons =>
+    {this.service.getPokemon(pokemons.name).subscribe(data =>{
         this.pokemons.push(data);
-    });
+      })
 });
 }
 
