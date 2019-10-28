@@ -10,6 +10,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import {PokemonService} from './pokemon.service';
+import {MatFormFieldModule} from '@angular/material';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 // import { MatSortModule } from '@angular/material/sort';
 
@@ -29,6 +30,7 @@ import {PokemonService} from './pokemon.service';
     HttpClientModule,
     RouterModule.forRoot(routes),
     MatTableModule,
+    MatFormFieldModule,
     // MatPaginatorModule,
     // MatSortModule
   ],
