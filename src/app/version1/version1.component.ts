@@ -14,7 +14,7 @@ export class Version1Component implements OnInit {
   pageSizeOptions: number[] = [10, 20, 30, 50];
   pokemons: Pokemon[] = [];
   pokemonDetails: Pokemon[] = [];
-  data = this.pokemonDetails;
+  DataSource = [];
   name = '';
   type = '';
     // new MatTableDataSource (this.pokemonDetails);
@@ -27,20 +27,27 @@ export class Version1Component implements OnInit {
     this.pokemons = [];
     this.service.getPokemonList(0, 20).subscribe(data => {
       this.pokemons = data;
-      // console.log(this.pokemons);
+      console.log(this.pokemons);
       this.getPokemonsOneByOne();
+      this.printOutTable();
+      console.log('ovo', this.DataSource);
     });
-
-
   }
+
 
 
 private getPokemonsOneByOne() {
   this.pokemons.forEach( pokemon => {
     this.service.getPokemonDetails(pokemon).subscribe(data => {
       this.pokemonDetails.push(data);
+      this.DataSource = [...this.pokemonDetails];
     });
   });
-  console.log(this.pokemonDetails);
+  // console.log(this.pokemonDetails);
+}
+
+private printOutTable () {
+    this.DataSource = this.pokemonDetails;
+    console.log(this.DataSource);
 }
 }

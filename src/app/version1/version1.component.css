@@ -10,3 +10,7 @@ table {
   font-size: medium;
   text-align: center;
 }
+
+.cell-style {
+  text-align: center;
+}
