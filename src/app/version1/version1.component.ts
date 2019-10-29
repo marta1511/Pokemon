@@ -4,6 +4,7 @@ import {Pokemon} from '../pokemons';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 
+
 @Component({
   selector: 'app-version1',
   templateUrl: './version1.component.html',
@@ -11,26 +12,28 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 })
 export class Version1Component implements OnInit {
   displayedColumns: string[] = ['name', 'type', 'height/weight', 'signature ability', 'base experience'];
-  pageSizeOptions: number[] = [10, 20, 30, 50];
+  pageSizeOptions: number[] = [10, 20, 50, 100];
   pokemons: Pokemon[] = [];
   pokemonDetails: Pokemon[] = [];
-  DataSource = [];
+  dataSource = [];
   name = '';
   type = '';
-    // new MatTableDataSource (this.pokemonDetails);
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   constructor(private service: PokemonService) {
 
   }
 
 
   ngOnInit() {
+    // this.dataSource.paginator = this.paginator;
     this.pokemons = [];
-    this.service.getPokemonList(0, 20).subscribe(data => {
+    this.service.getPokemonList(10, 20).subscribe(data => {
       this.pokemons = data;
       console.log(this.pokemons);
       this.getPokemonsOneByOne();
-      this.printOutTable();
-      console.log('ovo', this.DataSource);
+
+
     });
   }
 
@@ -40,14 +43,12 @@ private getPokemonsOneByOne() {
   this.pokemons.forEach( pokemon => {
     this.service.getPokemonDetails(pokemon).subscribe(data => {
       this.pokemonDetails.push(data);
-      this.DataSource = [...this.pokemonDetails];
+      this.dataSource = [...this.pokemonDetails];
+      // this.dataSource = new MatTableDataSource([...this.pokemonDetails]);
     });
   });
-  // console.log(this.pokemonDetails);
+  console.log(this.pokemonDetails);
 }
 
-private printOutTable () {
-    this.DataSource = this.pokemonDetails;
-    console.log(this.DataSource);
-}
+
 }

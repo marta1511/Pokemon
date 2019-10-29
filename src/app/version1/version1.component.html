@@ -12,7 +12,7 @@
 <!--</mat-form-field>-->
 
  <div class="mat-elevation-z8">
-   <table mat-table [dataSource]="DataSource" matSort>
+   <table mat-table [dataSource]="dataSource" matSort>
 
      <!-- Name Column -->
      <ng-container matColumnDef="name">
@@ -49,6 +49,6 @@
      </tr>
    </table>
 
-<!--   <mat-paginator [pageSizeOptions] = "pageSizeOptions"></mat-paginator>-->
+   <mat-paginator [pageSizeOptions] = "pageSizeOptions"></mat-paginator>
  </div>
  <router-outlet></router-outlet>

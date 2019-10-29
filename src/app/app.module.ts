@@ -11,9 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import {PokemonService} from './pokemon.service';
 import {MatFormFieldModule} from '@angular/material';
-// import { MatPaginatorModule } from '@angular/material/paginator';
-// import { MatSortModule } from '@angular/material/sort';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -31,8 +31,10 @@ import {MatFormFieldModule} from '@angular/material';
     RouterModule.forRoot(routes),
     MatTableModule,
     MatFormFieldModule,
-    // MatPaginatorModule,
-    // MatSortModule
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [PokemonService],
   bootstrap: [AppComponent]
