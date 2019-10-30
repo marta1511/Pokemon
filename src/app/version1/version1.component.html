@@ -49,6 +49,9 @@
      </tr>
    </table>
 
-   <mat-paginator [pageSizeOptions] = "pageSizeOptions"></mat-paginator>
+   <mat-paginator [pageSizeOptions] = "pageSizeOptions"
+                  (page) = "pageEvent($event)"
+                  [length] = "totalCount"
+   ></mat-paginator>
  </div>
  <router-outlet></router-outlet>
