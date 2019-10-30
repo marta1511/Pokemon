@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {PokemonService} from '../pokemon.service';
 import {Pokemon} from '../pokemons';
-import {MatPaginator, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
+
 
 
 
@@ -12,43 +13,51 @@ import {MatPaginator, MatTableDataSource} from '@angular/material';
 })
 export class Version1Component implements OnInit {
   displayedColumns: string[] = ['name', 'type', 'height/weight', 'signature ability', 'base experience'];
-  pageSizeOptions: number[] = [10, 20, 50, 100];
+  pageSizeOptions: number[] = [5, 10, 20, 50, 100];
+  totalCount: number = 0;
+  currentPage: number = 0;
+  currenPageSize: number = 10;
   pokemons: Pokemon[] = [];
   pokemonDetails: Pokemon[] = [];
-  dataSource = [];
-  name = '';
-  type = '';
+  dataSource: MatTableDataSource<Pokemon>;
+  // pageEvent: PageEvent;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   constructor(private service: PokemonService) {
 
   }
 
 
   ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
     this.pokemons = [];
-    this.service.getPokemonList(10, 20).subscribe(data => {
-      this.pokemons = data;
+
+
+    this.service.getPokemonList(this.currentPage * this.currenPageSize, this.currenPageSize).subscribe(resp => {
+      this.pokemons = resp.results;
+      this.totalCount = resp.count;
       console.log(this.pokemons);
+      console.log(this.totalCount);
       this.getPokemonsOneByOne();
-
-
+      // this.dataSource.paginator = this.paginator;
     });
   }
 
 
-
-private getPokemonsOneByOne() {
-  this.pokemons.forEach( pokemon => {
-    this.service.getPokemonDetails(pokemon).subscribe(data => {
-      this.pokemonDetails.push(data);
-      this.dataSource = [...this.pokemonDetails];
-      // this.dataSource = new MatTableDataSource([...this.pokemonDetails]);
+  private getPokemonsOneByOne() {
+    this.pokemons.forEach(pokemon => {
+      this.service.getPokemonDetails(pokemon).subscribe(data => {
+        this.pokemonDetails.push(data);
+        // this.dataSource = [...this.pokemonDetails];
+        this.dataSource = new MatTableDataSource(this.pokemonDetails);
+      });
     });
-  });
-  console.log(this.pokemonDetails);
-}
+    console.log(this.pokemonDetails);
+  }
 
-
+  public pageEvent(event: PageEvent)
+  {
+    this.currentPage = event.pageIndex;
+    this.currenPageSize = event.pageSize;
+  }
 }
