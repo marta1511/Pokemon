@@ -14,3 +14,22 @@ table {
 .cell-style {
   text-align: center;
 }
+
+.input-style {
+
+  margin-bottom: 20px;
+  margin-left: 150px;
+  text-align: left;
+  height: 30px;
+}
+.button-style {
+  margin-left: 100px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  width:100px;
+  height: 30px;
+  cursor:pointer;
+  /*background-color: mediumblue;*/
+  /*border-bottom-color: mediumblue;*/
+
+}

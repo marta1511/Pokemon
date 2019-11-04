@@ -6,18 +6,22 @@
   </div>
 </header>
 
-<!--<mat-form-field>-->
-<!--  <input matInput (keydown.enter)= "applyFilter($event)" placeholder="Name" name = "name" [(ngModel)]="name" )]>-->
-<!--  <input matInput (keydown.enter)= "applyFilter($event)" placeholder="Type" name = "type" [(ngModel)]="type" )]>-->
-<!--</mat-form-field>-->
+<div>
+  <label>
+    <input matInput (keydown.enter)= "applyFilter(name, type)" placeholder="Name" name = "name" [(ngModel)]="name" class="input-style" (ngModelChange)="ConvertToLower($event)"  >
+    <input matInput (keydown.enter)= "applyFilter(name, type)" placeholder="Type" name = "type" [(ngModel)]="type" class="input-style">
+  </label>
+  <button matTooltip  (click)="applyFilter(name, type)"  class = "button-style">Pretraži</button>
+</div>
+
 
  <div class="mat-elevation-z8">
-   <table mat-table [dataSource]="dataSource" matSort>
+   <table mat-table [dataSource]="dataSource" class="table-striped" >
 
      <!-- Name Column -->
      <ng-container matColumnDef="name">
        <th mat-header-cell *matHeaderCellDef class="header-style"> Name </th>
-       <td mat-cell *matCellDef="let row " class="cell-style"> {{row.name}} </td>
+       <td mat-cell *matCellDef="let row " class="cell-style"> {{row.name | titlecase}} </td>
      </ng-container>
 
      <!-- Type Column -->
@@ -49,6 +53,7 @@
      </tr>
    </table>
 
+   <!-- Paginator -->
    <mat-paginator [pageSizeOptions] = "pageSizeOptions"
                   (page) = "pageEvent($event)"
                   [length] = "totalCount"
