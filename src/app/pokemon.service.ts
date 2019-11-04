@@ -13,6 +13,7 @@ import {Observable} from 'rxjs';
 export class PokemonService {
 
   pokeApiURL = 'https://pokeapi.co/api/v2/pokemon/';
+  pokeApiTypeURL = 'https://pokeapi.co/api/v2/type/';
 
   constructor(private http: HttpClient) {
   }
@@ -26,6 +27,16 @@ export class PokemonService {
         return Pokemon.fromObject(data);
       }
     ));
+  }
+
+  public getPokemonByName(name: string): Observable<any> {
+    return this.http.get<any>(this.pokeApiURL + name).pipe(map(data => {
+      return Pokemon.fromObject(data);
+    }));
+  }
+
+  public getPokemonsByType(type: string): Observable<any> {
+    return this.http.get<any>(this.pokeApiTypeURL + type).pipe(map(data => data.pokemon.map(item => ({name: item.pokemon.name, url: item.pokemon.url}))));
   }
 
 }
