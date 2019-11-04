@@ -69,7 +69,7 @@ export class Version1Component implements OnInit {
   }
   public applyFilter(name, type) {
     this.type = type
-    if(name) {
+    if (name) {
       this.service.getPokemonByName(name).subscribe(resp => {
         this.pokemonDetails = [resp];
         this.totalCount = 1;
@@ -99,6 +99,9 @@ export class Version1Component implements OnInit {
   // input name malim slovom
   public ConvertToLower(event) {
     this.name = event.toLowerCase();
+  }
+
+  public isDisabled() {
   }
 
 }
