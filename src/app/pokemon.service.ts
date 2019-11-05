@@ -3,8 +3,7 @@ import {Pokemon} from './pokemons';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-
-
+import {Dialog} from './dialog';
 
 
 @Injectable({
@@ -38,5 +37,10 @@ export class PokemonService {
   public getPokemonsByType(type: string): Observable<any> {
     return this.http.get<any>(this.pokeApiTypeURL + type).pipe(map(data => data.pokemon.map(item => ({name: item.pokemon.name, url: item.pokemon.url}))));
   }
+   public getDamage(type: string){
+    return this.http.get<any>(this.pokeApiTypeURL + type).pipe(map(data => {
+      return Dialog.fromObject(data);
+    }));
+   }
 
 }

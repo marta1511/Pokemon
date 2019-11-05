@@ -2,9 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {PokemonService} from '../pokemon.service';
 import {Pokemon} from '../pokemons';
 import {MatPaginator, MatTableDataSource, PageEvent} from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
-import set = Reflect.set;
-import {disableDebugTools} from '@angular/platform-browser';
 
 
 
@@ -101,7 +98,8 @@ export class Version1Component implements OnInit {
     this.name = event.toLowerCase();
   }
 
-  public isDisabled() {
-  }
+  // public isDisabled() {
+  //
+  // }
 
 }
