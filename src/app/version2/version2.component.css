@@ -13,3 +13,11 @@ table {
 .cell-style {
   text-align: center;
 }
+
+.input-style {
+  margin-top: 70px;
+  margin-left: 100px;
+  margin-bottom: 20px;
+  text-align: center;
+  height: 30px;
+}

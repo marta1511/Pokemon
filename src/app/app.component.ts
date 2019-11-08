@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import 'hammerjs';
+import {trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-root',

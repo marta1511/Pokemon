@@ -3,8 +3,8 @@ import {Pokemon} from './pokemons';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {DamageInfo} from './damageInfo';
 import {Dialog} from './dialog';
-
 
 @Injectable({
   providedIn: 'root'
@@ -37,10 +37,10 @@ export class PokemonService {
   public getPokemonsByType(type: string): Observable<any> {
     return this.http.get<any>(this.pokeApiTypeURL + type).pipe(map(data => data.pokemon.map(item => ({name: item.pokemon.name, url: item.pokemon.url}))));
   }
-   public getDamage(type: string){
-    return this.http.get<any>(this.pokeApiTypeURL + type).pipe(map(data => {
-      return Dialog.fromObject(data);
-    }));
+   public getDamageInfo(types: string) {
+     // The split() method turns a String into an array of strings, by separating the string at each instance of a specified separator string.
+    const arr = types.split(', ');
+    return arr.map((item: string) => this.http.get<any>(this.pokeApiTypeURL + item).pipe((map(data => DamageInfo.fromObject(data)))));
    }
 
 }

@@ -16,7 +16,6 @@ export class Version1Component implements OnInit {
   totalCount: number = 0;
   currentPage: number = 0;
   currentPageSize: number = 5;
-  range: number[] = [0, 20]
   pokemons: Pokemon[] = [];
   pokemonDetails: Pokemon[] = [];
   dataSource: MatTableDataSource<Pokemon>;
@@ -36,6 +35,7 @@ export class Version1Component implements OnInit {
       this.pokemons = resp.results;
       this.totalCount = resp.count;
       this.getPokemonsOneByOne();
+
     });
   }
 
@@ -47,6 +47,7 @@ export class Version1Component implements OnInit {
         this.dataSource = new MatTableDataSource(this.pokemonDetails);
         this.dataSource.paginator = this.paginator;
         setTimeout(() => this.paginator.length = this.totalCount);
+        // console.log(this);
       });
     });
   }

@@ -32,7 +32,9 @@ export class Pokemon {
     }
     model.baseExperience = data.base_experience;
     return model;
+
   }
+
 }
 
 
