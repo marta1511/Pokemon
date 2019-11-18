@@ -30,6 +30,7 @@ export class Version1Component implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.type)
     this.pokemons = [];
     this.service.getPokemonList(this.currentPage * this.currentPageSize, this.currentPageSize).subscribe(resp => {
       this.pokemons = resp.results;

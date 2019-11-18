@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {DamageInfo} from './damageInfo';
-import {Dialog} from './dialog';
+
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +42,6 @@ export class PokemonService {
     const arr = types.split(', ');
     return arr.map((item: string) => this.http.get<any>(this.pokeApiTypeURL + item).pipe((map(data => DamageInfo.fromObject(data)))));
    }
+
 
 }

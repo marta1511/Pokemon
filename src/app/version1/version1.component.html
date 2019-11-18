@@ -8,8 +8,8 @@
 
 <div>
   <label>
-    <input matInput (keydown.enter)= "applyFilter(name, type)" placeholder="Name" name = "name" [(ngModel)]="name" class="input-style" (ngModelChange)="ConvertToLower($event)"  >
-    <input matInput (keydown.enter)= "applyFilter(name, type)" placeholder="Type" name = "type" [(ngModel)]="type" class="input-style" ng-disabled="isDisabled">
+    <input (keydown.enter)= "applyFilter(name, type)" placeholder="Name" name = "name" [(ngModel)]="name" class="input-style" (ngModelChange)="ConvertToLower($event)"  >
+    <input matInput [disabled]="name.length > 0 && type.length === 0 ? true : false" (keydown.enter)= "applyFilter(name, type)" placeholder="Type" name = "type" [(ngModel)]="type" class="input-style" ng-disabled="isDisabled">
   </label>
   <button matTooltip  (click)="applyFilter(name, type)"  class = "button-style">Pretraži</button>
 </div>

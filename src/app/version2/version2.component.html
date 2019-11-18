@@ -7,7 +7,7 @@
 </header>
 
 <div>
-  <input placeholder="Search by name" class="input-style" (keyup)="applyFilter($event)">
+  <input placeholder="Search by name" class="input-style" (keyup)="onChange($event.target.value)">
 </div>
 
 <div class="mat-elevation-z8">
@@ -23,7 +23,8 @@
     <ng-container matColumnDef="details">
       <th mat-header-cell *matHeaderCellDef class="header-style"> Details</th>
       <td mat-cell *matCellDef="let row" class="cell-style">
-        <button matTooltip="Info about Pokemon" (click)="getDetails(row.name)"></button>
+        <button mat-icon-button matTooltip="Pokemon info" (click)="getDetails(row.name)"><img src="https://img.icons8.com/offices/30/000000/pokeball.png"></button>
+
       </td>
     </ng-container>
 
@@ -31,4 +32,8 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;">
     </tr>
   </table>
+  <mat-paginator [pageSizeOptions] = "pageSizeOptions"
+                 (page) = "pageEvent($event)"
+                 [length] = "totalCount"
+  ></mat-paginator>
 </div>
